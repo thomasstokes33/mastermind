@@ -1,0 +1,10 @@
+
+.play-background {
+    /* -fx-background-image: url("../images/1.jpg"); */
+    -fx-background-size: cover;
+    /* -fx-background-color: grey; */
+}
+.gamepane {
+    /* -fx-background-color: rgb(204, 204, 204); */
+    -fx-background-color: rgb(255, 255, 255);
+}
