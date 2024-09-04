@@ -8,3 +8,82 @@
     /* -fx-background-color: rgb(204, 204, 204); */
     -fx-background-color: rgb(255, 255, 255);
 }
+
+.guess-row.enabled {
+    -fx-padding: 5 0;
+    -fx-border-width: 1;
+    -fx-border-color:  green;
+}
+
+.guess-row .button {
+    -fx-background-radius: 5em;
+    -fx-max-width:45;
+    -fx-min-width:45;
+    -fx-max-height:45;
+    -fx-min-height:45;
+}
+
+
+.guess-row .button:focused {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+    -fx-background-radius: 5em;
+}
+
+.guess-row.enabled .button:focused{
+    -fx-background-color: -fx-inner-border, -fx-body-color; 
+    -fx-background-radius: 5em;
+}
+
+.picker {
+    -fx-padding: 0 0 0 150;
+}
+
+.picker .button {
+    -fx-max-width:45;
+    -fx-min-width:45;
+    -fx-max-height:45;
+    -fx-min-height:45;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+    -fx-background-radius: 5em;
+
+}
+
+.picker .button:focused {
+    -fx-background-insets: 5, 6, 2;
+    -fx-background-color:  -fx-body-color, -fx-faint-focus-color;
+
+}
+
+
+.picker .red {
+    -fx-body-color: red;
+}
+
+.picker .blue {
+    -fx-body-color: blue;
+}
+
+.picker .green {
+    -fx-body-color: green;
+}
+
+.picker .yellow {
+    -fx-body-color: yellow;
+}
+.picker .brown {
+    -fx-body-color: brown;
+}
+
+.picker .purple {
+    -fx-body-color: purple;
+}
+
+.picker .black {
+    -fx-body-color: black;
+}
+
+
+

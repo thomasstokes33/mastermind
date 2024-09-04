@@ -48,7 +48,6 @@ public class GameWindow {
         this.scene = scene.createScene();
         stage.setScene(this.scene);
         Platform.runLater(() -> scene.initialise());
-
     }
 
     public void cleanup() {

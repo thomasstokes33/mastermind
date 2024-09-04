@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class App extends Application {
     private static final Logger logger = LogManager.getLogger(App.class);
+    public static final int PINS_PER_GUESS = 4;
+    public static final int MAX_GUESSES = 10;
     private Stage stage;
     private int baseWidth = 500;
     private int baseHeight = 600;
