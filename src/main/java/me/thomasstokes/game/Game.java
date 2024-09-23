@@ -1,11 +1,13 @@
 package me.thomasstokes.game;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import me.thomasstokes.App;
 import me.thomasstokes.enums.Colour;
 public class Game {
+    private static final Logger logger = LogManager.getLogger(Game.class);
     private final List<List<Colour>> guesses;
     private  List<Colour> answer;
     private int numberOfGuesses = 0;
@@ -15,7 +17,9 @@ public class Game {
         for (int i = 0; i < App.PINS_PER_GUESS; i++) {
             answer.add(Colour.randomColour());
         }
+        logger.info("Answer is " + guessToString(answer));
     }
+
     public static String guessToString(List<Colour> guess) {
         StringBuilder output = new StringBuilder();
         for (Colour colour : guess) {
@@ -35,14 +39,18 @@ public class Game {
     }
 /**
  * Adds guess to list of guesses
- * @param theGuess
- */
+ * @return Returns true if the guess is correct (and false otherwise).
+ **/
     public boolean guess(List<Colour> theGuess) {
         guesses.add(theGuess);
         numberOfGuesses++;
         return guessedCorrectly(theGuess);
     }
 
+    /**
+     * @return Returns true if the passed guess is 
+     * the correct answer.
+     */
     public boolean guessedCorrectly(List<Colour> theGuess) {
         if (theGuess != null && answer != null) {
             return (theGuess.equals(answer));
