@@ -16,6 +16,14 @@ public class Game {
             answer.add(Colour.randomColour());
         }
     }
+    public static String guessToString(List<Colour> guess) {
+        StringBuilder output = new StringBuilder();
+        for (Colour colour : guess) {
+            output.append(colour.toString());
+            output.append(' ');
+        }
+        return output.toString();
+    }
 
 /**
  * Sets passed index (indexing starts at 0) to the passed guess.
