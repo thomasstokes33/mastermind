@@ -1,16 +1,12 @@
 package me.thomasstokes;
 
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import me.thomasstokes.ui.GameWindow;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import me.thomasstokes.ui.GameWindow;
 
 /**
  * JavaFX App
@@ -27,10 +23,9 @@ public class App extends Application {
     public void start(Stage stage) {
         this.stage = stage;
         var gameWindow = new GameWindow(stage, baseWidth, baseHeight);
-        stage.show();
-        stage.setTitle("Mastermind");
-        stage.setOnCloseRequest(event -> this.shutdown());
-
+        this.stage.show();
+        this.stage.setTitle("Mastermind");
+        this.stage.setOnCloseRequest(event -> this.shutdown());
     }
 
     public static void main(String[] args) {
