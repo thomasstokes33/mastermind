@@ -5,8 +5,10 @@ module me.thomasstokes {
     requires javafx.fxml;
     requires javafx.media;
     requires javafx.base;
-    requires javafx.graphics;
+    requires transitive javafx.graphics;
     exports me.thomasstokes;
     exports me.thomasstokes.scene;
     exports me.thomasstokes.ui;
+    exports me.thomasstokes.enums;
+
 }
