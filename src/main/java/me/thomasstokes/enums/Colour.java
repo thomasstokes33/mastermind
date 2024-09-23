@@ -34,7 +34,10 @@ public enum Colour {
     public static Colour randomColour() {
         int length = VALUES_WITHOUT_NONE.length;
         return VALUES_WITHOUT_NONE[RANDOM.nextInt(length)];
+    }
     
+    public String toString() {
+        return super.toString().toLowerCase();
     }
 
 }
