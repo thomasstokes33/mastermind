@@ -72,5 +72,13 @@ public class GuessRow extends HBox {
         }
     }
 
+    public void setSelectedPosition(int position) {
+        colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected");
+        colourChangeButtons.get(position).getStyleClass().add("selected");
+        selectedPosition = position;
 
+    }
+    public void incrementSelectedPosition() {
+        setSelectedPosition((selectedPosition + 1) % 4);
+    }
 }
