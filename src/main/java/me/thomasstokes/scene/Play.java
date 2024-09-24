@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -42,6 +43,11 @@ public class Play extends Base {
         gridPane.setMaxHeight(window.getHeight());
         // setup rows
         guessesZone = new VBox(10);
+        ColumnConstraints columnConstraints0 = new ColumnConstraints();
+        ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 300);
+        columnConstraints1.setHgrow(Priority.ALWAYS);
+        gridPane.getColumnConstraints().addAll(columnConstraints0, columnConstraints1);
+        gridPane.setGridLinesVisible(true);
         for (int i = 0; i < App.MAX_GUESSES; i++) {
             var guessRow = new GuessRow();
             guessRows.add(guessRow);

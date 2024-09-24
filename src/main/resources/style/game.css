@@ -9,6 +9,10 @@
     -fx-background-color: rgb(255, 255, 255);
 }
 
+.guess-row {
+-fx-padding: 2 0;
+}
+
 .guess-row.enabled {
     -fx-padding: 5 0;
     -fx-border-width: 1;
@@ -36,8 +40,13 @@
     -fx-background-radius: 5em;
 }
 
+.guess-row.enabled .button.selected {
+    -fx-background-insets: 5, 6, 2;
+    -fx-background-color: -fx-body-color, -fx-faint-focus-color;
+}
+
 .picker {
-    -fx-padding: 0 0 0 150;
+    -fx-padding: 0 0 0 0;
 }
 
 .picker .button {
@@ -58,30 +67,30 @@
 }
 
 
-.picker .red {
+ .red {
     -fx-body-color: red;
 }
 
-.picker .blue {
+ .blue {
     -fx-body-color: blue;
 }
 
-.picker .green {
+ .green {
     -fx-body-color: green;
 }
 
-.picker .yellow {
+ .yellow {
     -fx-body-color: yellow;
 }
-.picker .brown {
+ .brown {
     -fx-body-color: brown;
 }
 
-.picker .purple {
+ .purple {
     -fx-body-color: purple;
 }
 
-.picker .black {
+ .black {
     -fx-body-color: black;
 }
 
