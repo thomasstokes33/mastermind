@@ -75,6 +75,10 @@ public class GuessRow extends HBox {
         }
     }
 
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
     public void setSelectedPosition(int position) {
         colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected");
         colourChangeButtons.get(position).getStyleClass().add("selected");
