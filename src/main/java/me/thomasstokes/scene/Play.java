@@ -58,7 +58,13 @@ public class Play extends Base {
         logger.info("widths of scene:" + scene.getWidth()+ " " + scene.getHeight());
     }
 
-    public void guessMade() {
-        game.guess(null);
+
+    public void victory() {
+        var victoryHBox = new HBox();
+        guessesZone.getChildren().add(new Label("victory"));
+        //TODO: Display victory setup and message
+        window.cleanup();
+        window.setPlayScene();
     }
+
 }
