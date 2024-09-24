@@ -89,8 +89,18 @@ public class GuessRow extends HBox {
             logger.info(colourChangeButtons.get(selectedPosition).getStyleClass());
             incrementSelectedPosition();
             if (!allColoursSetAlready && areAllColoursSet()) {
+                enableConfirmButton();
             }
         }
+    }
+    private void enableConfirmButton() {
+        var confirmGuessButton = new Button("Ok!"); 
+        guessArea.getChildren().add(confirmGuessButton);
+        confirmGuessButton.setOnMouseReleased(e -> {notifyGuessConfirmedListeners(); disableConfirmButton(confirmGuessButton);});
+    }
+
+    public void disableConfirmButton(Button button) {
+        guessArea.getChildren().remove(button);
     }
     private boolean areAllColoursSet() {
         boolean allColoursSet = true;
