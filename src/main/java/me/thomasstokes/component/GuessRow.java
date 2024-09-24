@@ -78,6 +78,15 @@ public class GuessRow extends HBox {
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
+    private boolean areAllColoursSet() {
+        boolean allColoursSet = true;
+        for (Colour colour : guess) {
+            if (colour == Colour.NONE) {
+                allColoursSet = false;
+            }
+        }
+        return allColoursSet;
+    }
 
     public void setSelectedPosition(int position) {
         colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected");
