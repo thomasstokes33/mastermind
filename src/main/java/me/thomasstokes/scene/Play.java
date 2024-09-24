@@ -41,7 +41,7 @@ public class Play extends Base {
         root.getChildren().add(gridPane);
         gridPane.setMaxWidth(window.getWidth());
         gridPane.setMaxHeight(window.getHeight());
-        // setup rows
+        // setup rows - 0th guess row is first guess.
         guessesZone = new VBox(10);
         ColumnConstraints columnConstraints0 = new ColumnConstraints();
         ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 300);
@@ -57,7 +57,19 @@ public class Play extends Base {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.add(guessesZone, 1, 1);
         gridPane.add(colourPicker,2,1);
-        guessRows.get(0).setEnabled(true);
+        guessRows.get(0).setEnabled(true); 
+        setupNextColourPickedListener(0);
+        setupNextGuessConfirmedListener(0);
+        //TODO: Add restart button.
+    }
+
+    public void setupNextColourPickedListener(int index) {
+        colourPicker.addColourPickedListener((colour) -> {guessRows.get(index).colourPicked(colour);});
+        //TODO: Clearup the last listener.
+    }
+
+    public void setupNextGuessConfirmedListener(int index) {
+        guessRows.get(index).addGuessConfirmedListener(guess -> guessMade(guess));
     }
 
     public void initialise() {
@@ -72,10 +84,13 @@ public class Play extends Base {
             guessRows.get(numberOfGuesses - 1).setEnabled(false);
             guessRows.get(numberOfGuesses - 1).setLocked(true);
             guessRows.get(numberOfGuesses).setEnabled(true);
+            setupNextColourPickedListener(numberOfGuesses);
+            setupNextGuessConfirmedListener(numberOfGuesses);
         }
     }
 
     public void victory() {
+        logger.info("Victory!");
         var victoryHBox = new HBox();
         guessesZone.getChildren().add(new Label("victory"));
         //TODO: Display victory setup and message
