@@ -64,6 +64,16 @@ public class Play extends Base {
         logger.info("widths of scene:" + scene.getWidth()+ " " + scene.getHeight());
     }
 
+    public void guessMade(List<Colour> guess) {
+        if (game.guess(guess)) {
+            victory();
+        } else {
+            int numberOfGuesses = game.getNumOfGuesses();
+            guessRows.get(numberOfGuesses - 1).setEnabled(false);
+            guessRows.get(numberOfGuesses - 1).setLocked(true);
+            guessRows.get(numberOfGuesses).setEnabled(true);
+        }
+    }
 
     public void victory() {
         var victoryHBox = new HBox();
