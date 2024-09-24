@@ -45,6 +45,7 @@ public class Game {
         guesses.add(theGuess);
         numberOfGuesses++;
         return guessedCorrectly(theGuess);
+        //TODO: Return black and white pins to indicate how correct the answer is.
     }
 
     /**
