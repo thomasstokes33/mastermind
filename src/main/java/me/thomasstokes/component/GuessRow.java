@@ -102,6 +102,16 @@ public class GuessRow extends HBox {
     public void disableConfirmButton(Button button) {
         guessArea.getChildren().remove(button);
     }
+    public void addGuessConfirmedListener(GuessConfirmedListener guessConfirmedListener) {
+        guessConfirmedListeners.add(guessConfirmedListener);
+    }
+    public void notifyGuessConfirmedListeners() {
+        if (!locked && enabled) {
+            for (GuessConfirmedListener guessConfirmedListener : guessConfirmedListeners) {
+                guessConfirmedListener.guessConfirmed(guess);
+            }
+        }
+    }
     private boolean areAllColoursSet() {
         boolean allColoursSet = true;
         for (Colour colour : guess) {
