@@ -7,27 +7,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import me.thomasstokes.ui.GameWindow;
 import me.thomasstokes.App;
 import me.thomasstokes.component.ColourPicker;
 import me.thomasstokes.component.GuessRow;
 import me.thomasstokes.enums.Colour;
 import me.thomasstokes.game.Game;
 import me.thomasstokes.ui.GamePane;
+import me.thomasstokes.ui.GameWindow;
 public class Play extends Base {
     private static final Logger logger = LogManager.getLogger(Play.class);
     private final List<GuessRow> guessRows;
     private GridPane gridPane;
     private VBox guessesZone;
     private final Game game;
-    private static Colour colour;
+    private ColourPicker colourPicker;
     public Play(GameWindow stage) {
         guessRows = new ArrayList<>();
-        colour = Colour.NONE;
         window = stage;
         game = new Game();
         logger.info("creating play scene");
@@ -47,7 +47,7 @@ public class Play extends Base {
             guessRows.add(guessRow);
             guessesZone.getChildren().add(guessRow);
         }
-        var colourPicker = new ColourPicker();
+        colourPicker = new ColourPicker();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.add(guessesZone, 1, 1);
         gridPane.add(colourPicker,2,1);
