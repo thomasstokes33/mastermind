@@ -48,24 +48,27 @@ public class GuessRow extends HBox {
         getChildren().clear();
 
         guessArea = new HBox(10);
-
         getChildren().add(guessArea);
-        for (int j = 0; j < App.PINS_PER_GUESS; j ++) {
+        for (int j = 0; j < App.PINS_PER_GUESS; j++) {
             var button = new Button();
-            button.setOnMouseReleased(e -> clicked(e));
-            // button.setStyle(" -fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
+            int position = j;
+            button.setOnMouseReleased(e -> clicked(button, e, position));
+            // button.setStyle(" -fx-focus-color: transparent; -fx-faint-focus-color:
+            // transparent;");
             guessArea.getChildren().add(button);
+            colourChangeButtons.add(button);
         }
     }
-    public void clicked(MouseEvent e) {
-        if (!locked) {
-            
-        } 
+
+    public void clicked(Button button, MouseEvent e, int position) {
+        if (!locked && enabled) {
+            setSelectedPosition(position);
+        }
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-        if (enabled) {
+        if (this.enabled) {
             getStyleClass().add("enabled");
         } else {
             getStyleClass().remove("enabled");
