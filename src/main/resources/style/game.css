@@ -10,10 +10,36 @@
 }
 .control.button {
     -fx-body-color: grey;
+}
+
+.answer-revealed-row, .guess-row {
+    -fx-spacing: 5;
+    -fx-padding: 5 0 0 0;
+}
+
+/* Controls the style of the victory box at game over. */
+.answer-revealed-row .result-area.game-over {
+    -fx-background-color: gray;
+    -fx-border-width: 1;
+    -fx-border-color: brown;
+}
+
+
 
 /*This is for the vertical pane where the guess pins are. */
 .guesses-zone {
     -fx-spacing: 10;
+}
+
+
+.guess-row .guess-area, .answer-revealed-row .result-area{
+    -fx-spacing: 10;
+    -fx-padding: 0 0 0 10;
+}
+
+.answer-revealed-row .result-area  {
+    -fx-background-color: brown;
+    -fx-padding: 10;
 }
 
 
@@ -23,7 +49,7 @@
     -fx-border-color:  green;
 }
 
-.guess-row .button {
+.guess-row .button, .answer-revealed-row .button{
     -fx-background-radius: 5em;
     -fx-max-width:45;
     -fx-min-width:45;
@@ -32,9 +58,8 @@
 }
 
 
-.guess-row .button:focused {
+.guess-row .button:focused, .answer-revealed-row .button:focused{
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color; 
-    -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;
     -fx-background-radius: 5em;
 }
