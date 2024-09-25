@@ -52,6 +52,7 @@
 .picker {
     -fx-padding: 2 0 2 4;
     -fx-max-height: 200;
+    -fx-spacing: 5;
 }
 
 .picker .button {

@@ -17,7 +17,6 @@ public class ColourPicker extends VBox {
         build();
     }
     public void build() {
-        setSpacing(5);
         getChildren().clear();
         // -1 because one colour is none.
 
