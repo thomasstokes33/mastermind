@@ -40,6 +40,13 @@ public class Play extends Base {
         guessRows = new ArrayList<>();
         window = stage;
         game = new Game();
+        game.addGameOverListener((isVictory, answer) -> {
+            if (isVictory) {
+                displayVictory(answer);
+            } else  {
+                sadDefeat();
+            }
+        });
         logger.info("creating play scene");
     }
 
@@ -108,6 +115,21 @@ public class Play extends Base {
             }
     }
 
+    public void displayVictory(List<Colour> answer)  {
+        logger.info("Victory! Displaying correct guess and waiting a few seconds.");
+        guessesZone.getChildren().add(new Label("Correct ! I will give you a short moment to reflect..."));
+        victoryBox.populateWithGuess(answer, true);
+        Timer delay = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+               Platform.runLater(()-> victory());
+            }
+            
+        };
+        delay.schedule(timerTask, 5000);
+   
+    }
     public void victory() {
         displayResultAlert("Correct Guess", "You win!");
         //TODO: Rework to use stack pane?
