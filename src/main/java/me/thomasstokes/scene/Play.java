@@ -109,12 +109,24 @@ public class Play extends Base {
     }
 
     public void victory() {
-        logger.info("Victory!");
-        var victoryHBox = new HBox();
-        guessesZone.getChildren().add(new Label("victory"));
-        //TODO: Display victory setup and message
+        displayResultAlert("Correct Guess", "You win!");
+        //TODO: Rework to use stack pane?
         window.cleanup();
         window.setPlayScene();
+    }
+
+    public void sadDefeat() {
+        logger.info("Loss");
+        displayResultAlert("Out of guesses", "Better luck (and logic) next time :)");
+        window.cleanup();
+        window.setPlayScene();
+    }
+
+    public void displayResultAlert(String headerText, String contentText) {
+        var alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
     public void displayRestartConfirmation() {
