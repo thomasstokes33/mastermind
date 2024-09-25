@@ -6,20 +6,30 @@ import org.apache.logging.log4j.Logger;
 
 import me.thomasstokes.App;
 import me.thomasstokes.enums.Colour;
+import me.thomasstokes.listeners.GameOverListener;
 public class Game {
     private static final Logger logger = LogManager.getLogger(Game.class);
+    private final List<GameOverListener> gameOverListeners;
     private final List<List<Colour>> guesses;
+    private final List<List<Colour>> feedback;
     private  List<Colour> answer;
     private int numberOfGuesses = 0;
+    private boolean gameOver;
     public Game() {
+        gameOver = false;
         guesses = new ArrayList<>(App.MAX_GUESSES);
-        answer = new ArrayList<>(4);
-        for (int i = 0; i < App.PINS_PER_GUESS; i++) {
-            answer.add(Colour.randomColour());
-        }
-        logger.info("Answer is " + guessToString(answer));
+        feedback = new ArrayList<>(App.MAX_GUESSES);
+        gameOverListeners = new ArrayList<>();
+        answer = getRandomAnswer();
+        logger.info("Answer for game " + this + " is " + guessToString(answer));
     }
-
+    public List<Colour> getRandomAnswer() {
+        List<Colour> output = new ArrayList<>(App.PINS_PER_GUESS);
+        for (int i = 0; i < App.PINS_PER_GUESS; i++) {
+            output.add(Colour.randomColour());
+        }
+        return output;
+    }
     public static String guessToString(List<Colour> guess) {
         StringBuilder output = new StringBuilder();
         for (Colour colour : guess) {
@@ -44,15 +54,17 @@ public class Game {
     public boolean guess(List<Colour> theGuess) {
         guesses.add(theGuess);
         numberOfGuesses++;
-        return guessedCorrectly(theGuess);
-        //TODO: Return black and white pins to indicate how correct the answer is.
+    public void addGameOverListener(GameOverListener gameOverListener) {
+        gameOverListeners.add(gameOverListener);
+    }
+
     }
 
     /**
      * @return Returns true if the passed guess is 
      * the correct answer.
      */
-    public boolean guessedCorrectly(List<Colour> theGuess) {
+    private boolean guessedCorrectly(List<Colour> theGuess) {
         if (theGuess != null && answer != null) {
             return (theGuess.equals(answer));
         } else {
@@ -62,6 +74,10 @@ public class Game {
 
     public int getNumOfGuesses() {
         return numberOfGuesses;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 }
  
