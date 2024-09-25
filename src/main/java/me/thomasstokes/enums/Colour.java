@@ -8,8 +8,8 @@ public enum Colour {
     GREEN,
     YELLOW,
     BROWN,
-    PURPLE,
     BLACK,
+    WHITE,
     NONE;
     public final static Colour []VALUES = values();
     public final static Colour []VALUES_WITHOUT_NONE = setupValuesWithoutNone();
