@@ -44,8 +44,8 @@ public class GuessRow extends HBox {
 
     public void build() {
         getChildren().clear();
-
-        guessArea = new HBox(10);
+        guessArea = new HBox();
+        guessArea.getStyleClass().add("guess-area");
         getChildren().add(guessArea);
         for (int j = 0; j < App.PINS_PER_GUESS; j++) {
             var button = new Button();

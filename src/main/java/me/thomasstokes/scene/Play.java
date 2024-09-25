@@ -56,6 +56,9 @@ public class Play extends Base {
         columnConstraints1.setHgrow(Priority.ALWAYS);
         gridPane.getColumnConstraints().addAll(columnConstraints0, columnConstraints1);
         gridPane.setGridLinesVisible(true);
+        // setup rows - 0th guess row is first guess.
+        guessesZone = new VBox();
+        guessesZone.getStyleClass().add("guesses-zone");
         for (int i = 0; i < App.MAX_GUESSES; i++) {
             var guessRow = new GuessRow();
             guessRows.add(guessRow);
