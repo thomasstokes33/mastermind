@@ -49,6 +49,13 @@
     -fx-background-color: -fx-faint-focus-color, -fx-body-color;
 }
 
+
+.guess-row .result {
+    -fx-max-width: 20;
+    -fx-min-width:20;
+    -fx-max-height:20;
+    -fx-min-height: 20;
+}
 .picker {
     -fx-padding: 2 0 2 4;
     -fx-max-height: 200;
