@@ -95,16 +95,17 @@ public class Play extends Base {
     }
 
     public void guessMade(List<Colour> guess) {
-        if (game.guess(guess)) {
-            victory();
-        } else {
-            int numberOfGuesses = game.getNumOfGuesses();
-            guessRows.get(numberOfGuesses - 1).setEnabled(false);
-            guessRows.get(numberOfGuesses - 1).setLocked(true);
-            guessRows.get(numberOfGuesses).setEnabled(true);
-            setupNextColourPickedListener(numberOfGuesses);
-            setupNextGuessConfirmedListener(numberOfGuesses);
-        }
+            GuessResultAndFeedback guessResultAndFeedback = game.guess(guess);
+            if (!guessResultAndFeedback.isGameOver()) {
+                logger.info("No end condition. Game CONTINUES");
+                int numberOfGuesses = game.getNumOfGuesses();
+                guessRows.get(numberOfGuesses - 1).setEnabled(false);
+                guessRows.get(numberOfGuesses - 1).setFeedback(guessResultAndFeedback.getFeedback());
+                guessRows.get(numberOfGuesses - 1).setLocked(true);
+                guessRows.get(numberOfGuesses).setEnabled(true);
+                setupNextColourPickedListener(numberOfGuesses);
+                setupNextGuessConfirmedListener(numberOfGuesses);
+            }
     }
 
     public void victory() {
