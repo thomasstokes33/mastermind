@@ -14,7 +14,7 @@ import me.thomasstokes.ui.GameWindow;
 public class App extends Application {
     private static final Logger logger = LogManager.getLogger(App.class);
     public static final int PINS_PER_GUESS = 4;
-    public static final int MAX_GUESSES = 10;
+    public static final int MAX_GUESSES = 9;
     private Stage stage;
     private double baseWidth = 500;
     private double baseHeight = 700;
