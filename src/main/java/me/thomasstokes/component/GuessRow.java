@@ -2,19 +2,17 @@ package me.thomasstokes.component;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import me.thomasstokes.App;
 import me.thomasstokes.enums.Colour;
 import me.thomasstokes.listeners.GuessConfirmedListener;
 
 public class GuessRow extends HBox {
-
     private static final Logger logger = LogManager.getLogger(GuessRow.class);
     private List<GuessConfirmedListener> guessConfirmedListeners = new ArrayList<>();
     private HBox guessArea;
@@ -34,8 +32,8 @@ public class GuessRow extends HBox {
      */
     private int selectedPosition = 0;
     public GuessRow() {
-        guess = new ArrayList<>(4);
-        for (int i = 0; i < 4; i++) {
+        guess = new ArrayList<>(App.PINS_PER_GUESS);
+        for (int i = 0; i < App.PINS_PER_GUESS; i++) {
             guess.add(Colour.NONE);
         }
         colourChangeButtons = new ArrayList<>();
@@ -86,7 +84,7 @@ public class GuessRow extends HBox {
             boolean allColoursSetAlready = areAllColoursSet();
             guess.set(selectedPosition, colour);
             colourChangeButtons.get(selectedPosition).getStyleClass().add(colour.toString());
-            logger.info(colourChangeButtons.get(selectedPosition).getStyleClass());
+            logger.info("Button " + selectedPosition + " set to " + colour);
             incrementSelectedPosition();
             if (!allColoursSetAlready && areAllColoursSet()) {
                 enableConfirmButton();
@@ -107,6 +105,7 @@ public class GuessRow extends HBox {
     }
     public void notifyGuessConfirmedListeners() {
         if (!locked && enabled) {
+            logger.info("Guess made: " + guess);
             for (GuessConfirmedListener guessConfirmedListener : guessConfirmedListeners) {
                 guessConfirmedListener.guessConfirmed(guess);
             }
@@ -129,6 +128,6 @@ public class GuessRow extends HBox {
 
     }
     public void incrementSelectedPosition() {
-        setSelectedPosition((selectedPosition + 1) % 4);
+        setSelectedPosition((selectedPosition + 1) % App.PINS_PER_GUESS);
     }
 }
