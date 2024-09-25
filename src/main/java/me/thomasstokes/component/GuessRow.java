@@ -93,12 +93,12 @@ public class GuessRow extends HBox {
     }
     private void enableConfirmButton() {
         var confirmGuessButton = new Button("Ok!"); 
-        guessArea.getChildren().add(confirmGuessButton);
+        getChildren().add(confirmGuessButton);
         confirmGuessButton.setOnMouseReleased(e -> {notifyGuessConfirmedListeners(); disableConfirmButton(confirmGuessButton);});
     }
 
     public void disableConfirmButton(Button button) {
-        guessArea.getChildren().remove(button);
+        getChildren().remove(button);
     }
     public void addGuessConfirmedListener(GuessConfirmedListener guessConfirmedListener) {
         guessConfirmedListeners.add(guessConfirmedListener);
