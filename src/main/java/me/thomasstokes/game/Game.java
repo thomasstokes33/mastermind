@@ -58,6 +58,16 @@ public class Game {
         gameOverListeners.add(gameOverListener);
     }
 
+    /**
+     * 
+     * @param isGameOverVictory True if the game is over in the victory state.
+     */
+    public void gameOver(boolean isGameOverVictory) {
+        gameOver = true;
+        for (GameOverListener gameOverListener : gameOverListeners) {
+            gameOverListener.gameOver(isGameOverVictory, answer);
+        }
+    }
     }
 
     /**
