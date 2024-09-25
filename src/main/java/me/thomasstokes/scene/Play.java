@@ -49,11 +49,9 @@ public class Play extends Base {
         root.getChildren().add(gridPane);
         gridPane.setMaxWidth(window.getWidth());
         gridPane.setMaxHeight(window.getHeight());
-        // setup rows - 0th guess row is first guess.
-        guessesZone = new VBox(10);
-        ColumnConstraints columnConstraints0 = new ColumnConstraints();
-        ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 300);
-        columnConstraints1.setHgrow(Priority.ALWAYS);
+        ColumnConstraints columnConstraints0 = new ColumnConstraints(); // Constraints for column 0
+        ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 500); // Constraints for column 1 
+        // columnConstraints1.setHgrow(Priority.NEVER);
         gridPane.getColumnConstraints().addAll(columnConstraints0, columnConstraints1);
         gridPane.setGridLinesVisible(true);
         // setup rows - 0th guess row is first guess.
