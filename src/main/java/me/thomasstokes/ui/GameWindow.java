@@ -14,11 +14,11 @@ import me.thomasstokes.scene.Play;
 public class GameWindow {
     private static final Logger logger = LogManager.getLogger(GameWindow.class);
 
-    private final int width;
-    private final int height;
+    private final double width;
+    private final double height;
     private final Stage stage;
     private Scene scene;
-    public GameWindow(Stage stage, int width, int height) {
+    public GameWindow(Stage stage, double width, double height) {
         this.width = width;
         this.height = height;
         this.stage = stage;
@@ -55,14 +55,17 @@ public class GameWindow {
 
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
     public Stage getStage() {
         return stage;
     }
-    
+
+    public Scene getScene() {
+        return scene;
+    }
 }

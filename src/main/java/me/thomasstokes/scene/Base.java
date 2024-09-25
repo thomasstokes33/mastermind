@@ -24,8 +24,8 @@ public abstract class Base {
     }
 
     public Scene createScene() {
-        var previous = window.getStage();
-        this.scene = new Scene(root, previous.getWidth(),previous.getHeight(),Color.WHITE);
+        var previousScene = window.getScene();
+        this.scene = new Scene(root, previousScene.getWidth(), previousScene.getHeight(), Color.WHITE);
         this.scene.getStylesheets().add(getClass().getResource("/style/game.css").toExternalForm());
         return scene;
     }

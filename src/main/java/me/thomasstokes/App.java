@@ -16,13 +16,13 @@ public class App extends Application {
     public static final int PINS_PER_GUESS = 4;
     public static final int MAX_GUESSES = 10;
     private Stage stage;
-    private int baseWidth = 500;
-    private int baseHeight = 600;
+    private double baseWidth = 500;
+    private double baseHeight = 700;
 
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        var gameWindow = new GameWindow(stage, baseWidth, baseHeight);
+        var gameWindow = new GameWindow(stage, baseWidth, baseHeight); // Needed so the object is still referenced and not garbage collected.
         this.stage.show();
         this.stage.setTitle("Mastermind");
         this.stage.setOnCloseRequest(event -> this.shutdown());

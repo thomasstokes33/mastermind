@@ -1,8 +1,4 @@
 package me.thomasstokes.ui;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.transform.Scale;
@@ -10,10 +6,8 @@ import javafx.scene.transform.Translate;
 
 public class GamePane extends StackPane{
 
-  private static final Logger logger = LogManager.getLogger(GamePane.class);
-
-  private final int width;
-  private final int height;
+  private final double width;
+  private final double height;
   private double scalar = 1;
   private final boolean autoScale = true;
 
@@ -23,7 +17,7 @@ public class GamePane extends StackPane{
    * @param width  width
    * @param height height
    */
-  public GamePane(int width, int height) {
+  public GamePane(double width, double height) {
     super();
     this.width = width;
     this.height = height;
@@ -54,7 +48,7 @@ public class GamePane extends StackPane{
       return;
     }
 
-    //Work out the scale factor height and width
+    //Work out the scale factor height and width. getWidth and getHeight refer to the stack pane methods.
     var scaleFactorHeight = getHeight() / height;
     var scaleFactorWidth = getWidth() / width;
     //Work out whether to scale by width or height. We have to use the smallest so nothing is scaled out of frame.
