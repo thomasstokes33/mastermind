@@ -8,9 +8,9 @@
     /* -fx-background-color: rgb(204, 204, 204); */
     -fx-background-color: rgb(255, 255, 255);
 }
+.control.button {
+    -fx-body-color: grey;
 
-.guess-row {
--fx-padding: 2 0;
 }
 
 .guess-row.enabled {

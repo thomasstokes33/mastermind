@@ -2,22 +2,30 @@ package me.thomasstokes.scene;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import me.thomasstokes.App;
+import me.thomasstokes.component.AnswerRevealedRow;
 import me.thomasstokes.component.ColourPicker;
 import me.thomasstokes.component.GuessRow;
 import me.thomasstokes.enums.Colour;
 import me.thomasstokes.game.Game;
+import me.thomasstokes.game.GuessResultAndFeedback;
 import me.thomasstokes.ui.GamePane;
 import me.thomasstokes.ui.GameWindow;
 public class Play extends Base {
@@ -60,7 +68,11 @@ public class Play extends Base {
         guessRows.get(0).setEnabled(true); 
         setupNextColourPickedListener(0);
         setupNextGuessConfirmedListener(0);
-        //TODO: Add restart button.
+        // Setup in built restart button
+        var restartButton = new Button("Restart");
+        restartButton.setOnMouseReleased(e -> displayRestartConfirmation());
+        restartButton.getStyleClass().add("control");
+        gridPane.add(restartButton, 2, 0);
     }
 
     public void setupNextColourPickedListener(int index) {
@@ -96,6 +108,22 @@ public class Play extends Base {
         //TODO: Display victory setup and message
         window.cleanup();
         window.setPlayScene();
+    }
+
+    public void displayRestartConfirmation() {
+        logger.info("Restarting game");
+        Alert restartConfirm = new Alert(Alert.AlertType.CONFIRMATION);
+        restartConfirm.setHeaderText("Restart");
+        restartConfirm.setContentText("Are you sure you want to restart?");
+        Optional<ButtonType> result = restartConfirm.showAndWait();
+        if (result.isPresent()) {
+            if (result.get().equals(ButtonType.OK)) {
+                window.cleanup();
+                window.setPlayScene();
+            }
+        }
+        
+
     }
 
 }
