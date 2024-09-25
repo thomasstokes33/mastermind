@@ -68,6 +68,46 @@ public class Game {
             gameOverListener.gameOver(isGameOverVictory, answer);
         }
     }
+
+    private GuessResultAndFeedback getFeedbackForGuess(List<Colour> theGuess) {
+        List<Colour> feedback = new ArrayList<>(App.PINS_PER_GUESS);
+        Colour[] guessArray = theGuess.toArray(new Colour[App.PINS_PER_GUESS]);
+        Colour[] answerArray = answer.toArray(new Colour[App.PINS_PER_GUESS]);
+        int blackCount = 0;
+        // black sweep
+        for (int i = 0; i < answerArray.length; i++) {
+            if (guessArray[i] == answerArray[i]) {
+                feedback.add(Colour.CORRECT_COLOUR_AND_POSITION_RESULT_COLOUR);
+                guessArray[i] = Colour.NONE;
+                answerArray[i] = Colour.NONE;
+                blackCount++;
+            }
+        }
+        GuessResultAndFeedback guessResult;
+        if (blackCount == App.PINS_PER_GUESS) {
+            guessResult = new CorrectGuessResult();
+        } else {
+            // white sweep
+            for (int guessPos = 0; guessPos < guessArray.length; guessPos++) {
+                if (guessArray[guessPos] != Colour.NONE) {
+                    for (int answerPos = 0; answerPos < answerArray.length; answerPos++) {
+                        if (guessArray[guessPos] == answerArray[answerPos]) {
+                            feedback.add(Colour.CORRECT_COLOUR_WRONG_POSITION_RESULT_COLOUR);
+                            answerArray[answerPos] = Colour.NONE;
+                            guessArray[guessPos] = Colour.NONE;
+                            break; // Without this any White match would be comparing the guess position, now set to None,
+                                    // with any other Nones in the answer which may result in more "false" whites.
+                        }
+                    }
+                }
+            }
+            while (feedback.size() < App.PINS_PER_GUESS) {
+                feedback.add(Colour.NONE);
+            }
+            guessResult = new IncorrectGuessResult(feedback);
+        }
+        logger.info("Feedback: " + guessResult.getFeedback()); 
+        return guessResult;
     }
 
     /**
