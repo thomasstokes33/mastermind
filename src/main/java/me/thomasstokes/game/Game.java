@@ -47,13 +47,20 @@ public class Game {
             guesses.set(guess, theGuess);
         }
     }
-/**
- * Adds guess to list of guesses
- * @return Returns true if the guess is correct (and false otherwise).
- **/
-    public boolean guess(List<Colour> theGuess) {
+
+    public GuessResultAndFeedback guess(List<Colour> theGuess) {
+        GuessResultAndFeedback guessResultAndFeedback = getFeedbackForGuess(theGuess);
         guesses.add(theGuess);
+        feedback.add(guessResultAndFeedback.getFeedback());
         numberOfGuesses++;
+        if  (guessResultAndFeedback.isGuessCorrect()) {  
+            gameOver(true);
+        } else if (!guessResultAndFeedback.isGuessCorrect() && numberOfGuesses == App.MAX_GUESSES) {
+            guessResultAndFeedback.setGameOver(true);
+            gameOver(false);
+        }
+        return guessResultAndFeedback;
+    }
     public void addGameOverListener(GameOverListener gameOverListener) {
         gameOverListeners.add(gameOverListener);
     }
