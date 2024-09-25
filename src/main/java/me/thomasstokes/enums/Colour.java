@@ -11,10 +11,12 @@ public enum Colour {
     PURPLE,
     BLACK,
     NONE;
-
-    public static Colour []VALUES = values();
-    public static Colour []VALUES_WITHOUT_NONE = setupValuesWithoutNone();
-    private static Random RANDOM = new Random();
+    public final static Colour []VALUES = values();
+    public final static Colour []VALUES_WITHOUT_NONE = setupValuesWithoutNone();
+    private final static Random RANDOM = new Random();
+    public static final Colour CORRECT_COLOUR_AND_POSITION_RESULT_COLOUR = Colour.BLACK;
+    public static final Colour CORRECT_COLOUR_WRONG_POSITION_RESULT_COLOUR = Colour.WHITE;
+    public final static Colour HIDDEN_PIN_COLOUR = Colour.BROWN;
 
     public static Colour[] setupValuesWithoutNone() {
         Colour []allValues = values();
