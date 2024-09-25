@@ -35,6 +35,7 @@ public class Play extends Base {
     private VBox guessesZone;
     private final Game game;
     private ColourPicker colourPicker;
+    private AnswerRevealedRow victoryBox;
     public Play(GameWindow stage) {
         guessRows = new ArrayList<>();
         window = stage;
@@ -66,7 +67,9 @@ public class Play extends Base {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.add(guessesZone, 1, 1);
         gridPane.add(colourPicker,2,1);
-        guessRows.get(0).setEnabled(true); 
+        guessRows.get(0).setEnabled(true);
+        victoryBox = new AnswerRevealedRow();
+        guessesZone.getChildren().add(victoryBox);
         setupNextColourPickedListener(0);
         setupNextGuessConfirmedListener(0);
         // Setup in built restart button
@@ -86,7 +89,9 @@ public class Play extends Base {
     }
 
     public void initialise() {
-        logger.info("widths of scene:" + scene.getWidth()+ " " + scene.getHeight());
+        logger.info("Initialise Play scene");
+        logger.info("Dimensions of scene: " + scene.getWidth()+ " x " + scene.getHeight());
+
     }
 
     public void guessMade(List<Colour> guess) {
