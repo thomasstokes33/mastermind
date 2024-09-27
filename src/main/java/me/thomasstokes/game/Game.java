@@ -84,7 +84,7 @@ public class Game {
         // black sweep
         for (int i = 0; i < answerArray.length; i++) {
             if (guessArray[i] == answerArray[i]) {
-                feedback.add(Colour.CORRECT_COLOUR_AND_POSITION_RESULT_COLOUR);
+                feedback.add(Colour.CORRECT_COLOUR_CORRECT_POSITION_RESULT_COLOUR);
                 guessArray[i] = Colour.NONE;
                 answerArray[i] = Colour.NONE;
                 blackCount++;
