@@ -58,7 +58,7 @@ public class GuessRow extends HBox {
         }
     }
 
-    public void clicked(Button button, MouseEvent e, int position) {
+    public void clicked(Button button, MouseEvent mouseEvent, int position) {
         if (!locked && enabled) {
             setSelectedPosition(position);
         }
