@@ -80,21 +80,21 @@ public class Game {
         List<Colour> feedback = new ArrayList<>(App.PINS_PER_GUESS);
         Colour[] guessArray = theGuess.toArray(new Colour[App.PINS_PER_GUESS]);
         Colour[] answerArray = answer.toArray(new Colour[App.PINS_PER_GUESS]);
-        int blackCount = 0;
-        // sweep for correct colour and position.
+        int correctPositionAndColourCount = 0;
+        // sweep for pins that are the correct colour and in the correct position.
         for (int i = 0; i < answerArray.length; i++) {
             if (guessArray[i] == answerArray[i]) {
                 feedback.add(Colour.CORRECT_COLOUR_CORRECT_POSITION_RESULT_COLOUR);
                 guessArray[i] = Colour.NONE;
                 answerArray[i] = Colour.NONE;
-                blackCount++;
+                correctPositionAndColourCount++;
             }
         }
         GuessResultAndFeedback guessResult;
-        if (blackCount == App.PINS_PER_GUESS) {
+        if (correctPositionAndColourCount == App.PINS_PER_GUESS) {
             guessResult = new CorrectGuessResult();
         } else {
-            // sweep for correct colour but wrong position.
+            // sweep for pins that are the correct colour but wrong position.
             for (int guessPos = 0; guessPos < guessArray.length; guessPos++) {
                 if (guessArray[guessPos] != Colour.NONE) {
                     for (int answerPos = 0; answerPos < answerArray.length; answerPos++) {
