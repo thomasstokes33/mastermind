@@ -16,7 +16,7 @@ public class ColourPicker extends VBox {
     private static final Logger logger = LogManager.getLogger(ColourPicker.class);
     public ColourPicker() {
         colourChangedListeners = new ArrayList<>();
-        getStyleClass().add("picker");
+        getStyleClass().add("colour-picker");
         build();
     }
     public void build() {

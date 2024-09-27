@@ -81,13 +81,13 @@
     -fx-max-height:20;
     -fx-min-height: 20;
 }
-.picker {
+.colour-picker {
     -fx-padding: 2 0 2 4;
     -fx-max-height: 200;
     -fx-spacing: 5;
 }
 
-.picker .button {
+.colour-picker .button {
     -fx-max-width:45;
     -fx-min-width:45;
     -fx-max-height:45;
@@ -100,7 +100,7 @@
 
 }
 
-.picker .button:focused {
+.colour-picker .button:focused {
     -fx-background-insets: 5, 6, 2;
     -fx-faint-focus-color: black;
     -fx-background-color:  -fx-faint-focus-color, -fx-body-color; /*Order is important as I had an issue with the white button.*/
