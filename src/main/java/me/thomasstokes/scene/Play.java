@@ -40,13 +40,7 @@ public class Play extends Base {
         guessRows = new ArrayList<>();
         window = stage;
         game = new Game();
-        game.addGameOverListener((isVictory, answer) -> {
-            if (isVictory) {
-                displayVictory(answer);
-            } else  {
-                sadDefeat();
-            }
-        });
+        game.addGameOverListener((isVictory, answer) -> displayAnswer(isVictory, answer));
         logger.info("creating play scene");
     }
 
@@ -115,22 +109,34 @@ public class Play extends Base {
             }
     }
 
-    public void displayVictory(List<Colour> answer)  {
-        logger.info("Victory! Displaying correct guess and waiting a few seconds.");
-        guessesZone.getChildren().add(new Label("Correct ! I will give you a short moment to reflect..."));
+    public void displayAnswer(boolean victory, List<Colour> answer)  {
+        logger.info("Game ended: displaying correct guess and waiting a few seconds...");
+        String labelMessage;
+        if (victory) {
+            labelMessage = "Correct!";
+        } else {
+            labelMessage = "Incorrect :(";
+        }
+        guessesZone.getChildren().add(new Label(labelMessage + " I will give you a short moment to reflect..."));
         victoryBox.populateWithGuess(answer, true);
         Timer delay = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-               Platform.runLater(()-> victory());
+                Runnable executeAfterExpiry;
+                if (victory) {
+                    executeAfterExpiry = () -> victory();
+                } else {
+                    executeAfterExpiry = () -> sadDefeat();
+                }
+                Platform.runLater(executeAfterExpiry);
             }
             
         };
         delay.schedule(timerTask, 5000);
-   
     }
     public void victory() {
+        logger.info("Victory");
         displayResultAlert("Correct Guess", "You win!");
         //TODO: Rework to use stack pane?
         window.cleanup();
@@ -147,7 +153,7 @@ public class Play extends Base {
     public void displayResultAlert(String headerText, String contentText) {
         var alert = new Alert(AlertType.INFORMATION);
         alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
+        alert.setContentText(contentText + " Pressing ok will reset the game.");
         alert.showAndWait();
     }
 
