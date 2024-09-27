@@ -30,12 +30,19 @@ import me.thomasstokes.ui.GamePane;
 import me.thomasstokes.ui.GameWindow;
 public class Play extends Base {
     private static final Logger logger = LogManager.getLogger(Play.class);
+    /**
+     * This variable stores all the GuessRows for easy access.
+     */
     private final List<GuessRow> guessRows;
     private GridPane gridPane;
     private VBox guessesZone;
     private final Game game;
     private ColourPicker colourPicker;
     private AnswerRevealedRow victoryBox;
+    /**
+     * This timer is used at the end of the game to delay an alert to the user.
+     */
+    private TimerTask timerTask;
     public Play(GameWindow stage) {
         guessRows = new ArrayList<>();
         window = stage;
@@ -120,7 +127,7 @@ public class Play extends Base {
         guessesZone.getChildren().add(new Label(labelMessage + " I will give you a short moment to reflect..."));
         victoryBox.populateWithGuess(answer, true);
         Timer delay = new Timer();
-        TimerTask timerTask = new TimerTask() {
+        timerTask = new TimerTask() {
             @Override
             public void run() {
                 Runnable executeAfterExpiry;
@@ -165,6 +172,9 @@ public class Play extends Base {
         Optional<ButtonType> result = restartConfirm.showAndWait();
         if (result.isPresent()) {
             if (result.get().equals(ButtonType.OK)) {
+                if (timerTask != null) {
+                    timerTask.cancel(); // clears the alert that displays the result if the user clicks restart.
+                }
                 window.cleanup();
                 window.setPlayScene();
             }
