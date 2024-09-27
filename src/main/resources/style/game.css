@@ -95,11 +95,14 @@
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;
     -fx-background-radius: 5em;
+    -fx-inner-border-color: black;
+    -fx-background-color: -fx-inner-border-color, -fx-body-color;
 
 }
 
 .picker .button:focused {
     -fx-background-insets: 5, 6, 2;
+    -fx-faint-focus-color: black;
     -fx-background-color:  -fx-faint-focus-color, -fx-body-color; /*Order is important as I had an issue with the white button.*/
 
 }
