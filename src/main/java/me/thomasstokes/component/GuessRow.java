@@ -14,7 +14,13 @@ import me.thomasstokes.listeners.GuessConfirmedListener;
 
 public class GuessRow extends HBox {
     private static final Logger logger = LogManager.getLogger(GuessRow.class);
+    /**
+     * The listeners to notify when a guess is confirmed.
+     */
     private List<GuessConfirmedListener> guessConfirmedListeners = new ArrayList<>();
+    /**
+     * This is a HBox nested within the GuessRow which contains the "pin" Button objects.
+     */
     private HBox guessArea;
     /**
      * These are the buttons that act as the "pin holes", which change colour corresponding 
@@ -25,10 +31,16 @@ public class GuessRow extends HBox {
      * Array storing the current guess.
      */
     private final List<Colour> guess;
+    /**
+     * If true it indicates that the GuessRow has submitted a guess and has feedback. It effectively inhibts editing of the GuessRow.
+     */
     private boolean locked = false;
+    /**
+     * If true it indicates that the GuessRow is active and it means the user has reached this row.
+     */
     private boolean enabled = false;
     /**
-     * The selected position. Starts at 0.
+     * The selected pin position. Starts at indexing 0 on left.
      */
     private int selectedPosition = 0;
     public GuessRow() {
@@ -58,12 +70,21 @@ public class GuessRow extends HBox {
         }
     }
 
+    /**
+     * The handler method for when a Button pin is clicked. 
+     * @param button The Button clicked.
+     * @param position The position of the Button clicked as a number. Counting starts from the left and from 0.
+     */
     public void clicked(Button button, MouseEvent mouseEvent, int position) {
         if (!locked && enabled) {
             setSelectedPosition(position);
         }
     }
 
+    /**
+     * Set whether the Guess Row is {@link GuessRow#enabled enabled}.
+     * @param enabled true to enable and false to disable.
+     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
         if (this.enabled) {
@@ -72,11 +93,19 @@ public class GuessRow extends HBox {
             getStyleClass().remove("enabled");
         }
     }
-
+    /**
+     * Sets if the GuessRow is {@link GuessRow#locked locked}.
+     * @param locked
+     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
+    /**
+     * The handler for when a colour is picked. This will update the currently {@link GuessRow#selectedPosition selected position's} Button 
+     * to the passed Colour.
+     * @param colour The colour the user picked.
+     */
     public void colourPicked(Colour colour) {
         if (enabled && !locked) {
             String currentColour = guess.get(selectedPosition).toString();
@@ -91,18 +120,33 @@ public class GuessRow extends HBox {
             }
         }
     }
+    /**
+     * Adds a confirm Button to the GuessRow which the user can click to submit their guess.
+     */
     private void enableConfirmButton() {
         var confirmGuessButton = new Button("Ok!"); 
         getChildren().add(confirmGuessButton);
         confirmGuessButton.setOnMouseReleased(e -> {notifyGuessConfirmedListeners(); disableConfirmButton(confirmGuessButton);});
     }
 
+    /**
+     * Removes the passed Button from the GuessRow.
+     * @param button The Button to remove.
+     */
     public void disableConfirmButton(Button button) {
         getChildren().remove(button);
     }
+
+    /**
+     * 
+     * @param guessConfirmedListener Listener to add to {@link GuessRow#guessConfirmedListeners}.
+     */
     public void addGuessConfirmedListener(GuessConfirmedListener guessConfirmedListener) {
         guessConfirmedListeners.add(guessConfirmedListener);
     }
+    /**
+     * Handler for when a guess had been confirmed (meaning it can no longer be changed).
+     */
     public void notifyGuessConfirmedListeners() {
         if (!locked && enabled) {
             logger.info("Guess made: " + guess);
@@ -112,6 +156,11 @@ public class GuessRow extends HBox {
             }
         }
     }
+
+    /**
+     * Checks if the user has chosen a colour for each pin.
+     * @return Returns true if all pins have a chosen colour.
+     */
     private boolean areAllColoursSet() {
         boolean allColoursSet = true;
         for (Colour colour : guess) {
@@ -122,16 +171,27 @@ public class GuessRow extends HBox {
         return allColoursSet;
     }
 
+    /**
+     * Sets the selected position, which will alter the highlighted position for the user.
+     */
     public void setSelectedPosition(int position) {
         colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected");
         colourChangeButtons.get(position).getStyleClass().add("selected");
         selectedPosition = position;
-
     }
+
+    /**
+     * Increments the stored selected position.
+     */
     public void incrementSelectedPosition() {
         setSelectedPosition((selectedPosition + 1) % App.PINS_PER_GUESS);
     }
 
+    /**
+     * Adds the passed feedback to the GuessRow.
+     * @param feedback This is a list of colours indicating how correct a guess is. The Colours must be {@link Colour#CORRECT_COLOUR_WRONG_POSITION_RESULT_COLOUR}
+     * or {@link Colour#CORRECT_COLOUR_CORRECT_POSITION_RESULT_COLOUR}.
+     */
     public void setFeedback(List<Colour> feedback) {
         if (!locked) {
             List<Button> feedbackButtons = new ArrayList<>();
