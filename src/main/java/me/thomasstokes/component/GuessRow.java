@@ -132,18 +132,20 @@ public class GuessRow extends HBox {
     }
 
     public void setFeedback(List<Colour> feedback) {
-        List<Button> feedbackButtons = new ArrayList<>();
-        for (Colour colour : feedback) {
-            Button button = new Button();
-            button.getStyleClass().addAll(colour.toString(), "result");
-            feedbackButtons.add(button);
+        if (!locked) {
+            List<Button> feedbackButtons = new ArrayList<>();
+            for (Colour colour : feedback) {
+                Button button = new Button();
+                button.getStyleClass().addAll(colour.toString(), "result");
+                feedbackButtons.add(button);
+            }
+            VBox resultColumn1 = new VBox();
+            resultColumn1.getChildren().add(feedbackButtons.get(0));
+            resultColumn1.getChildren().add(feedbackButtons.get(1));
+            VBox resultColumn2 = new VBox();
+            resultColumn2.getChildren().add(feedbackButtons.get(2));
+            resultColumn2.getChildren().add(feedbackButtons.get(3));
+            getChildren().addAll(resultColumn1, resultColumn2);
         }
-        VBox resultColumn1 = new VBox();
-        resultColumn1.getChildren().add(feedbackButtons.get(0));
-        resultColumn1.getChildren().add(feedbackButtons.get(1));
-        VBox resultColumn2 = new VBox();
-        resultColumn2.getChildren().add(feedbackButtons.get(2));
-        resultColumn2.getChildren().add(feedbackButtons.get(3));
-        getChildren().addAll(resultColumn1, resultColumn2);
     }
 }
