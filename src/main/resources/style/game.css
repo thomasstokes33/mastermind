@@ -26,12 +26,12 @@
 
 
 
-/*This is for the vertical pane where the guess pins are. */
+/*This is for the vertical pane where the guess rows are. */
 .guesses-zone {
     -fx-spacing: 10;
 }
 
-
+/*guess-area and result-area are nested HBoxes within the guess-row (GuessRow class) and answer-revealed-row (AnswerRevealedRow class). */
 .guess-row .guess-area, .answer-revealed-row .result-area{
     -fx-spacing: 10;
     -fx-padding: 0 0 0 10;
@@ -42,7 +42,7 @@
     -fx-padding: 10;
 }
 
-
+/* An enabled GuessRow is the row or guess the user is currently on. */
 .guess-row.enabled {
     -fx-padding: 5 0;
     -fx-border-width: 1;
@@ -69,13 +69,13 @@
     -fx-background-radius: 5em;
 }
 
-.guess-row.enabled .button.selected {
+.guess-row.enabled .button.selected { /*The space means nested within and the dot notation means the nested object must have both those classes. All buttons have the button class in javafx.  */
     -fx-background-insets: 5, 6, 2;
     -fx-background-color: -fx-faint-focus-color, -fx-body-color;
 }
 
-
-.guess-row .result {
+/*This is for the result pins buttons*/
+.guess-row .button.result {
     -fx-max-width: 20;
     -fx-min-width:20;
     -fx-max-height:20;
