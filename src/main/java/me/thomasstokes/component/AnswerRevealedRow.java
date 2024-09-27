@@ -13,7 +13,7 @@ import me.thomasstokes.enums.Colour;
  */
 public class AnswerRevealedRow extends HBox {
     /**
-     * The nested HBox that actually contains the result Buttons.
+     * The nested HBox that actually contains the result.
      */
     HBox resultArea = new HBox();
     private final String GAME_OVER_CSS_CLASS_NAME = "game-over";

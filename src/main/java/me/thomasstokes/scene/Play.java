@@ -96,13 +96,13 @@ public class Play extends Base {
     }
 
     public void guessMade(List<Colour> guess) {
-            GuessResultAndFeedback guessResultAndFeedback = game.guess(guess);
+            GuessResultAndFeedback guessResultAndFeedback = game.guess(guess);  
+            int numberOfGuesses = game.getNumOfGuesses();
+            guessRows.get(numberOfGuesses - 1).setEnabled(false);
+            guessRows.get(numberOfGuesses - 1).setFeedback(guessResultAndFeedback.getFeedback());
+            guessRows.get(numberOfGuesses - 1).setLocked(true);
             if (!guessResultAndFeedback.isGameOver()) {
                 logger.info("No end condition. Game CONTINUES");
-                int numberOfGuesses = game.getNumOfGuesses();
-                guessRows.get(numberOfGuesses - 1).setEnabled(false);
-                guessRows.get(numberOfGuesses - 1).setFeedback(guessResultAndFeedback.getFeedback());
-                guessRows.get(numberOfGuesses - 1).setLocked(true);
                 guessRows.get(numberOfGuesses).setEnabled(true);
                 setupNextColourPickedListener(numberOfGuesses);
                 setupNextGuessConfirmedListener(numberOfGuesses);
