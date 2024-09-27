@@ -43,6 +43,8 @@ public class GuessRow extends HBox {
      * The selected pin position. Starts at indexing 0 on left.
      */
     private int selectedPosition = 0;
+    private static final String SELECTED_BUTTON_CSS_CLASS_NAME = "selected"; 
+    private static final String ENABLED_CSS_CLASS_NAME = "enabled";
     public GuessRow() {
         guess = new ArrayList<>(App.PINS_PER_GUESS);
         for (int i = 0; i < App.PINS_PER_GUESS; i++) {
@@ -88,9 +90,9 @@ public class GuessRow extends HBox {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
         if (this.enabled) {
-            getStyleClass().add("enabled");
+            getStyleClass().add(ENABLED_CSS_CLASS_NAME);
         } else {
-            getStyleClass().remove("enabled");
+            getStyleClass().remove(ENABLED_CSS_CLASS_NAME);
         }
     }
     /**
@@ -150,7 +152,7 @@ public class GuessRow extends HBox {
     public void notifyGuessConfirmedListeners() {
         if (!locked && enabled) {
             logger.info("Guess made: " + guess);
-            colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected"); // No need to de-focus as focus is shifted to confirmation button.
+            colourChangeButtons.get(selectedPosition).getStyleClass().remove(SELECTED_BUTTON_CSS_CLASS_NAME); // No need to de-focus as focus is shifted to confirmation button.
             for (GuessConfirmedListener guessConfirmedListener : guessConfirmedListeners) {
                 guessConfirmedListener.guessConfirmed(guess);
             }
@@ -175,8 +177,8 @@ public class GuessRow extends HBox {
      * Sets the selected position, which will alter the highlighted position for the user.
      */
     public void setSelectedPosition(int position) {
-        colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected");
-        colourChangeButtons.get(position).getStyleClass().add("selected");
+        colourChangeButtons.get(selectedPosition).getStyleClass().remove(SELECTED_BUTTON_CSS_CLASS_NAME);
+        colourChangeButtons.get(position).getStyleClass().add(SELECTED_BUTTON_CSS_CLASS_NAME);
         selectedPosition = position;
     }
 
