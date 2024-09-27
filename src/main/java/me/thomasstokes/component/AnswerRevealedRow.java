@@ -8,7 +8,13 @@ import javafx.scene.layout.HBox;
 import me.thomasstokes.App;
 import me.thomasstokes.enums.Colour;
 
+/**
+ * The final row that hides the answer from the user until the end.
+ */
 public class AnswerRevealedRow extends HBox {
+    /**
+     * The nested HBox that actually contains the result Buttons.
+     */
     HBox resultArea = new HBox();
     private final String GAME_OVER_CSS_CLASS_NAME = "game-over";
     public AnswerRevealedRow() {
