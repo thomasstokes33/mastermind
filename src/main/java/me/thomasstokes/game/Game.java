@@ -23,6 +23,9 @@ public class Game {
         answer = getRandomAnswer();
         logger.info("Answer for game " + this + " is " + guessToString(answer));
     }
+    /**
+     * @return Returns the random List of colours corresponding to a guess.
+     */
     public List<Colour> getRandomAnswer() {
         List<Colour> output = new ArrayList<>(App.PINS_PER_GUESS);
         for (int i = 0; i < App.PINS_PER_GUESS; i++) {
@@ -48,6 +51,11 @@ public class Game {
         }
     }
 
+    /**
+     * Checks if the guess is correct and end or continue the game accordingly. Also returns the feedback of the Guess.
+     * @param theGuess The list of colours representing a user's guess.
+     * @return Returns a {@link GuessResultAndFeedback} object.
+     */
     public GuessResultAndFeedback guess(List<Colour> theGuess) {
         GuessResultAndFeedback guessResultAndFeedback = getFeedbackForGuess(theGuess);
         guesses.add(theGuess);
@@ -66,8 +74,8 @@ public class Game {
     }
 
     /**
-     * 
-     * @param isGameOverVictory True if the game is over in the victory state.
+     * Handles a game over.
+     * @param isGameOverVictory True if the user has correctly guessed the answer.
      */
     public void gameOver(boolean isGameOverVictory) {
         gameOver = true;
