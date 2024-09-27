@@ -106,6 +106,7 @@ public class GuessRow extends HBox {
     public void notifyGuessConfirmedListeners() {
         if (!locked && enabled) {
             logger.info("Guess made: " + guess);
+            colourChangeButtons.get(selectedPosition).getStyleClass().remove("selected"); // No need to de-focus as focus is shifted to confirmation button.
             for (GuessConfirmedListener guessConfirmedListener : guessConfirmedListeners) {
                 guessConfirmedListener.guessConfirmed(guess);
             }
