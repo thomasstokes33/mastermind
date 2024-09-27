@@ -8,6 +8,9 @@ import javafx.scene.layout.VBox;
 
 import me.thomasstokes.enums.Colour;
 import me.thomasstokes.listeners.ColourPickedListener;
+/**
+ * This is the component that allows users to pick a colour for a given pin. It notifies any listeners when a colour is picked.
+ */
 public class ColourPicker extends VBox {
     private final List<ColourPickedListener> colourChangedListeners;
     private static final Logger logger = LogManager.getLogger(ColourPicker.class);
@@ -18,13 +21,11 @@ public class ColourPicker extends VBox {
     }
     public void build() {
         getChildren().clear();
-        // -1 because one colour is none.
-
-        for (int i = 0; i < Colour.VALUES.length - 1; i++) {
+        for (int i = 0; i < Colour.VALUES_WITHOUT_NONE.length; i++) {
             var button = new Button();
             getChildren().add(button);
             // button.setStyle("-fx-background-color: " + Colour.VALUES[i].toString().toLowerCase());
-            Colour colour = Colour.VALUES[i];
+            Colour colour = Colour.VALUES_WITHOUT_NONE[i];
             button.getStyleClass().add(colour.toString().toLowerCase());
             button.setOnMouseReleased(e -> colourChosen(colour));
         }
