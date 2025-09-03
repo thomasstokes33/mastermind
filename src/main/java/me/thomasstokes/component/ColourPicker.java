@@ -12,6 +12,9 @@ import me.thomasstokes.listeners.ColourPickedListener;
  * This is the component that allows users to pick a colour for a given pin. It notifies any listeners when a colour is picked.
  */
 public class ColourPicker extends VBox {
+    /**
+     * A List of observers or listeners to notify when a new colour is picked.
+     */
     private final List<ColourPickedListener> colourChangedListeners;
     private static final Logger logger = LogManager.getLogger(ColourPicker.class);
     public ColourPicker() {
@@ -40,7 +43,9 @@ public class ColourPicker extends VBox {
             colourPickedListener.colourPicked(colourPicked);
         }
     }
-
+    /**
+     * Adds a listener for when a new colour is chosen.
+     */
     public ColourPickedListener addColourPickedListener(ColourPickedListener colourPickedListener) {
         colourChangedListeners.add(colourPickedListener);
         return colourPickedListener;
