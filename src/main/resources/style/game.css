@@ -37,7 +37,6 @@
 /*guess-area and result-area are nested HBoxes within the guess-row (GuessRow class) and answer-revealed-row (AnswerRevealedRow class). */
 .guess-row .guess-area, .answer-revealed-row .result-area{
     -fx-spacing: 10;
-    -fx-padding: 0 0 0 10;
 }
 
 .answer-revealed-row .result-area  {
