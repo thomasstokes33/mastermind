@@ -10,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -18,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import me.thomasstokes.App;
@@ -60,11 +60,11 @@ public class Play extends Base {
         gridPane = new GridPane();
         gridPane.getStyleClass().add("play-background");
         root.getChildren().add(gridPane);
-        gridPane.setMaxWidth(window.getWidth());
         gridPane.setMaxHeight(window.getHeight());
         ColumnConstraints columnConstraints0 = new ColumnConstraints(); // Constraints for column 0
-        ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 500); // Constraints for column 1 
-        // columnConstraints1.setHgrow(Priority.NEVER);
+        ColumnConstraints columnConstraints1 = new ColumnConstraints(); // Constraints for column 1 
+        columnConstraints1.setMinWidth(280);
+        columnConstraints1.setHgrow(Priority.ALWAYS); // Central column is responsive and grows.
         gridPane.getColumnConstraints().addAll(columnConstraints0, columnConstraints1);
         // setup rows - 0th guess row is first guess.
         guessesZone = new VBox();
