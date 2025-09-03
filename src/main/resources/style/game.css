@@ -52,7 +52,7 @@
 /* An enabled GuessRow is the row or guess the user is currently on. */
 .guess-row.enabled {
     -fx-padding: 5 0;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-border-color:  green;
 }
 
