@@ -1,13 +1,14 @@
 package me.thomasstokes.scene;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import me.thomasstokes.ui.GamePane;
 import me.thomasstokes.ui.GameWindow;
 
 public abstract class Base {
     protected Scene scene;
-    protected GamePane root;
+    protected Pane root;
     protected GameWindow window;
 
     @Override
