@@ -33,6 +33,11 @@ public class Game {
         }
         return output;
     }
+    /**
+     * Converts the given List of Color enums into a user readable string.
+     * @param guess A list of Color enums.
+     * @return Returns a string to represent the given guess.
+     */
     public static String guessToString(List<Colour> guess) {
         StringBuilder output = new StringBuilder();
         for (Colour colour : guess) {
@@ -83,7 +88,14 @@ public class Game {
             gameOverListener.gameOver(isGameOverVictory, answer);
         }
     }
-
+    /**
+     * Calculates the feedback for a given guess.
+     * {@link Colour#CORRECT_COLOUR_CORRECT_POSITION_RESULT_COLOUR} indicates there is a pin with the correct colour
+     * that is in the correct position, while {@link Colour#CORRECT_COLOUR_WRONG_POSITION_RESULT_COLOUR} indicates 
+     * there is a pin that is the correct colour, but it is in the wrong position.
+     * @param theGuess The user's guess.
+     * @return  Returns a {@link GuessResultAndFeedback} object.
+     */
     private GuessResultAndFeedback getFeedbackForGuess(List<Colour> theGuess) {
         List<Colour> feedback = new ArrayList<>(App.PINS_PER_GUESS);
         Colour[] guessArray = theGuess.toArray(new Colour[App.PINS_PER_GUESS]);
