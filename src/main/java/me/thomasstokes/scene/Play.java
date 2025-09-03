@@ -62,7 +62,6 @@ public class Play extends Base {
         ColumnConstraints columnConstraints1 = new ColumnConstraints(300, 300, 500); // Constraints for column 1 
         // columnConstraints1.setHgrow(Priority.NEVER);
         gridPane.getColumnConstraints().addAll(columnConstraints0, columnConstraints1);
-        gridPane.setGridLinesVisible(true);
         // setup rows - 0th guess row is first guess.
         guessesZone = new VBox();
         guessesZone.getStyleClass().add("guesses-zone");
