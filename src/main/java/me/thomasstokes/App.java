@@ -16,7 +16,7 @@ public class App extends Application {
     public static final int PINS_PER_GUESS = 4;
     public static final int MAX_GUESSES = 9;
     private Stage stage;
-    private double baseWidth = 500;
+    private double baseWidth = 350;
     private double baseHeight = 700;
 
     @Override
