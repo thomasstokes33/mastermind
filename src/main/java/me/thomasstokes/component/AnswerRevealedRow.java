@@ -11,13 +11,14 @@ import me.thomasstokes.enums.Colour;
 /**
  * The final row that hides the answer from the user until the end.
  */
-public class AnswerRevealedRow extends HBox {
+public class AnswerRevealedRow extends Row {
     /**
      * The nested HBox that actually contains the result.
      */
     HBox resultArea = new HBox();
     private final String GAME_OVER_CSS_CLASS_NAME = "game-over";
     public AnswerRevealedRow() {
+        super();
         getStyleClass().add("answer-revealed-row");
         getChildren().add(resultArea);
         resultArea.getStyleClass().add("result-area");

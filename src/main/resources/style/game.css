@@ -40,6 +40,8 @@
 .answer-revealed-row .result-area  {
     -fx-background-color: brown;
     -fx-padding: 10;
+.row {
+    -fx-alignment: center;
 }
 
 /* An enabled GuessRow is the row or guess the user is currently on. */

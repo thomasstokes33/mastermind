@@ -12,7 +12,7 @@ import me.thomasstokes.App;
 import me.thomasstokes.enums.Colour;
 import me.thomasstokes.listeners.GuessConfirmedListener;
 
-public class GuessRow extends HBox {
+public class GuessRow extends Row {
     private static final Logger logger = LogManager.getLogger(GuessRow.class);
     /**
      * The listeners to notify when a guess is confirmed.
@@ -46,6 +46,7 @@ public class GuessRow extends HBox {
     private static final String SELECTED_BUTTON_CSS_CLASS_NAME = "selected"; 
     private static final String ENABLED_CSS_CLASS_NAME = "enabled";
     public GuessRow() {
+        super();
         guess = new ArrayList<>(App.PINS_PER_GUESS);
         for (int i = 0; i < App.PINS_PER_GUESS; i++) {
             guess.add(Colour.NONE);
