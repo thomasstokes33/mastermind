@@ -5,7 +5,7 @@ This project demonstrated my programming approach, including documentation, enca
 
 <img src="mastermind.png" width="200">
 
-## Launching
+## Launching the application
 You will need at least Java 17 and Maven is required. If you build an uber JAR then you will only need Java and can
 then double click on the JAR. Otherwise, ensure that the `mvn` command is on the path and run `mvn javafx:run` in the top-level folder.
 
