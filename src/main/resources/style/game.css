@@ -23,6 +23,7 @@
 .answer-revealed-row .result-area.game-over {
     -fx-background-color: gray;
     -fx-border-width: 1;
+    -fx-border-radius: 8;
     -fx-border-color: brown;
 }
 
@@ -42,6 +43,9 @@
 .answer-revealed-row .result-area  {
     -fx-background-color: brown;
     -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
 .row {
     -fx-alignment: center;
 }
