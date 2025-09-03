@@ -72,12 +72,12 @@ public class Play extends Base {
             guessesZone.getChildren().add(guessRow);
         }
         colourPicker = new ColourPicker();
-        gridPane.setAlignment(Pos.CENTER);
+        // Add the main components to the gridpane.
         gridPane.add(guessesZone, 1, 1);
         gridPane.add(colourPicker,2,1);
-        guessRows.get(0).setEnabled(true);
+        guessRows.get(0).setEnabled(true); // Enable the first guess row.
         victoryBox = new AnswerRevealedRow();
-        guessesZone.getChildren().add(victoryBox);
+        guessesZone.getChildren().add(victoryBox); // Add the row which is hiding the answer.
         setupNextColourPickedListener(0);
         setupNextGuessConfirmedListener(0);
         // Setup in built restart button
@@ -101,7 +101,11 @@ public class Play extends Base {
         logger.info("Dimensions of scene: " + scene.getWidth()+ " x " + scene.getHeight());
 
     }
-
+    /**
+     * Disables and locks the previous row, enables the next row and also passes the guess to the Game backend.
+     * The backend returns the feedback, which is then displayed.
+     * @param guess The user's guess.
+     */
     public void guessMade(List<Colour> guess) {
             GuessResultAndFeedback guessResultAndFeedback = game.guess(guess);  
             int numberOfGuesses = game.getNumOfGuesses();
@@ -116,6 +120,11 @@ public class Play extends Base {
             }
     }
 
+    /**
+     * Reveals the hidden guess and displays the game outcome.
+     * @param victory The game outcome: true for victory and false for a loss.
+     * @param answer The correct answer.
+     */
     public void displayAnswer(boolean victory, List<Colour> answer)  {
         logger.info("Game ended: displaying correct guess and waiting a few seconds...");
         String labelMessage;
@@ -142,6 +151,9 @@ public class Play extends Base {
         };
         delay.schedule(timerTask, 5000);
     }
+    /**
+     * Clears up the game after correctly guessing the hidden pins.
+     */
     public void victory() {
         logger.info("Victory");
         displayResultAlert("Correct Guess", "You win!");
@@ -150,6 +162,9 @@ public class Play extends Base {
         window.setPlayScene();
     }
 
+    /**
+     * Clears up the game after a loss.
+     */
     public void sadDefeat() {
         logger.info("Loss");
         displayResultAlert("Out of guesses", "Better luck (and logic) next time :)");
@@ -157,6 +172,9 @@ public class Play extends Base {
         window.setPlayScene();
     }
 
+    /**
+     * Displays an alert filled with the header and context text provided.
+     */
     public void displayResultAlert(String headerText, String contentText) {
         var alert = new Alert(AlertType.INFORMATION);
         alert.setHeaderText(headerText);
